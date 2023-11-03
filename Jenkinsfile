@@ -49,7 +49,9 @@ pipeline {
         }
         stage ('Deploy apps to Server'){
             steps{
-               sh ' echo "will do this"'
+               sh """
+               docker-compose up -d
+               """
             }
         }
         stage ("Clean up"){
