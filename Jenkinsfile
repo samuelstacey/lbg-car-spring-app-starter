@@ -16,13 +16,13 @@ pipeline {
                 }
             }
         }
-//         stage ('Build Backend'){
-//             steps{
-//                 script {
-//                     dockerImage = docker.build(registry)
-//                 }
-//             }
-//         }
+        stage ('Build Backend'){
+            steps{
+                script {
+                    dockerImage = docker.build(registry)
+                }
+            }
+        }
         stage('Test and build react frontend') {
             steps {
                 dir("lbg-car-front") {
@@ -41,6 +41,8 @@ pipeline {
                         dockerImage.push("${env.BUILD_NUMBER}")
                         dockerImage.push("latest")
                     }
+                    sh "docker push sam473/lbg-car-front:v${BUILD_NUMBER}"
+                    sh "docker push sam473/lbg-car-front:latest"
                 }
             }
         }
