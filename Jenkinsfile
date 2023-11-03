@@ -46,6 +46,7 @@ pipeline {
         }
         stage ('Deploy apps to Server'){
             steps{
+               sh ' echo "will do this"'
             }
         }
         stage ("Clean up"){
