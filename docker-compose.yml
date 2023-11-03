@@ -30,7 +30,7 @@ services:
     networks:
       - car-network
 
-    ui:
+    user-interface:
       image: sam473/lbg-car-front:latest
       ports:
         - 80:80
