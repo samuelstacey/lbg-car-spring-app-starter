@@ -27,9 +27,9 @@ pipeline {
             steps {
                 dir("lbg-car-front") {
                     sh """
-                    yarn install
+                    npm install
                     yarn test
-                    docker build -t victorialloyd/lbg-car-front:v${BUILD_NUMBER} .
+                    docker build -t sam473/lbg-car-front:v${BUILD_NUMBER} .
                     """
                 }
             }
