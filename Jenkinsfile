@@ -30,6 +30,7 @@ pipeline {
                     npm install
                     npm test
                     docker build -t sam473/lbg-car-front:v${BUILD_NUMBER} .
+                    docker tag sam473/lbg-car-front:v${BUILD_NUMBER} sam473/lbg-car-front:latest
                     """
                 }
             }
@@ -41,7 +42,7 @@ pipeline {
                         dockerImage.push("${env.BUILD_NUMBER}")
                         dockerImage.push("latest")
                     }
-//                     sh "docker push sam473/lbg-car-front:v${BUILD_NUMBER}"
+                    sh "docker push sam473/lbg-car-front:v${BUILD_NUMBER}"
                     sh "docker push sam473/lbg-car-front:latest"
                 }
             }
