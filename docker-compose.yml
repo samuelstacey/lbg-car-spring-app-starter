@@ -25,7 +25,7 @@ services:
     depends_on:
       - mysqldb
     ports:
-      - 8080:8080
+      - 8072:8072
     restart: always
     networks:
       - car-network
