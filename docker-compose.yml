@@ -30,14 +30,14 @@ services:
     networks:
       - car-network
 
-    user-interface:
-      image: sam473/lbg-car-front:latest
-      ports:
-        - 80:80
-      depends_on:
-        - api
-      networks:
-        - car-network
+  user-interface:
+    image: sam473/lbg-car-front:latest
+    ports:
+      - 80:80
+    depends_on:
+      - api
+    networks:
+      - car-network
 
 networks:
   car-network:
