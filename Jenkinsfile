@@ -27,9 +27,8 @@ pipeline {
             steps {
                 dir("lbg-car-front") {
                     sh """
-                    sudo npm install -g yarn
-                    yarn install
-                    yarn test
+                    npm install
+                    npm test
                     docker build -t sam473/lbg-car-front:v${BUILD_NUMBER} .
                     """
                 }
