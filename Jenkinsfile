@@ -16,13 +16,13 @@ pipeline {
                 }
             }
         }
-        stage ('Build Backend'){
-            steps{
-                script {
-                    dockerImage = docker.build(registry)
-                }
-            }
-        }
+//         stage ('Build Backend'){
+//             steps{
+//                 script {
+//                     dockerImage = docker.build(registry)
+//                 }
+//             }
+//         }
         stage('Test and build react frontend') {
             steps {
                 dir("lbg-car-front") {
