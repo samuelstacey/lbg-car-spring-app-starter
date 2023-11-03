@@ -3,8 +3,7 @@ pipeline {
        registry = "sam473/cardatabase"
               registryCredentials = "dockerhub_id"
               dockerImage = ""
-          }
-    }
+       }
     agent any
     stages {
         stage('Checkout source repos') {
@@ -42,4 +41,5 @@ pipeline {
                        }
             }
         }
+    }
 }
