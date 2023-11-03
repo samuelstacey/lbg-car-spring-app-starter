@@ -4,12 +4,12 @@ FROM maven:3.6.3 AS build
 WORKDIR /usr/src/app
 COPY . /usr/src/app
 # Compile and package the application to an executable JAR
-RUN mvn package -P prod
+RUN mvn package -Pprod -Dmaven.test.skip
 
 # For Java 11,
 FROM adoptopenjdk/openjdk11:alpine-jre
 
-ARG JAR_FILE=cardatabase.jar
+ARG JAR_FILE=cardatabase-0.0.1-SNAPSHOT.jar
 
 WORKDIR /opt/app
 
