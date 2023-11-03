@@ -2,21 +2,23 @@ version: '3'
 
 services:
   mysqldb:
-    container_name: mysqldb
     image: mysql:latest
     environment:
-      - MYSQL_ROOT_PASSWORD=P@ssw0rd
-      - MYSQL_DATABASE=spbapidb
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=cardb
+    networks:
+      - car-network
     restart: always
     ports:
       - 3306:3306
     volumes:
-      - mysqldb:/var/lib/mysql
+      - type: volume
+        source: cardb-volume
+        target: /var/lib/mysql
+
   api:
     container_name: api
-    image: cardatabase-img
+    image: sam473/lbg-car-back:latest
     build:
       context: ./
       dockerfile: Dockerfile
@@ -25,6 +27,19 @@ services:
     ports:
       - 8080:8080
     restart: always
+    networks:
+      - car-network
 
+    ui:
+      image: sam473/lbg-car-front:latest
+      ports:
+        - 80:80
+      depends_on:
+        - api
+      networks:
+        - car-network
+
+networks:
+  car-network:
 volumes:
-  mysqldb:
+  cardb-volume:
