@@ -16,10 +16,21 @@ pipeline {
                 }
             }
         }
-        stage ('Build Docker Image'){
+        stage ('Build Backend'){
             steps{
                 script {
                     dockerImage = docker.build(registry)
+                }
+            }
+        }
+        stage('Test and build react frontend') {
+            steps {
+                dir("lbg-car-front") {
+                    sh """
+                    yarn install
+                    yarn test
+                    docker build -t victorialloyd/lbg-car-front:v${BUILD_NUMBER} .
+                    """
                 }
             }
         }
@@ -33,7 +44,10 @@ pipeline {
                 }
             }
         }
-
+        stage ('Deploy apps to Server'){
+            steps{
+            }
+        }
         stage ("Clean up"){
             steps {
                 script {
